@@ -16,19 +16,27 @@ describe('Finite State Machine', function () {
     expect(gate.state).to.equal('closed')
   })
 
-  it('has a walkThrough method that transitions state to false', function () {
+  it('has a tapCard method that transitions state to open', function () {
+    gate.tapCard()
+    expect(gate.tapCard).to.be.a.function
+    expect(gate.state).to.equal('open')
+  })
+
+  it('has a walkThrough method that transitions state to closed if state is currently open', function () {
+    gate.tapCard()
+    expect(gate.walkThrough()).to.equal(true)
     gate.walkThrough()
-    expect(gate.walkThrough).to.be.function
+    expect(gate.walkThrough).to.be.a.function
     expect(gate.state).to.equal('closed')
   })
 
-  it('has an exit method that transitions state to true, and invokes the walkThrough method', function () {
-    gate.exit()
-    expect(gate.exit).to.be.a.function
+  it('has a walkThrough method that returns false if state is currently closed', function () {
+    expect(gate.walkThrough()).to.equal(false)
   })
 
-  it('has an enter method that transitions state to true, and invokes the walkThrough method if card === true', function () {
-    gate.enter()
-    expect(gate.enter).to.be.a.function
+  it('has an exit method that transitions state to open', function () {
+    gate.exit()
+    expect(gate.exit).to.be.a.function
+    expect(gate.state).to.equal('open')
   })
 })
