@@ -18,6 +18,13 @@ describe('Finite State Machine', function () {
 
   it('has a walkThrough method that transitions state to false', function () {
     gate.walkThrough()
+    expect(gate.walkThrough).to.be.function
     expect(gate.state).to.equal(false)
+  })
+
+  it('has an exit method that transitions state to true, and invokes the walkThrough method', function () {
+    gate.exit()
+    expect(gate.exit).to.be.function
+    expect(gate.walkThrough).to.have.been.called
   })
 })
