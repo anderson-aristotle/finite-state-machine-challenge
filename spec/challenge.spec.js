@@ -6,6 +6,7 @@ const chaiAsPromised = require('chai-as-promised')
 chai.use(chaiAsPromised)
 
 const expect = chai.expect
+// const assert = chai.assert
 
 const challenge = require('../lib/challenge')
 
@@ -24,7 +25,11 @@ describe('Finite State Machine', function () {
 
   it('has an exit method that transitions state to true, and invokes the walkThrough method', function () {
     gate.exit()
-    expect(gate.exit).to.be.function
-    expect(gate.walkThrough).to.have.been.called
+    expect(gate.exit).to.be.a.function
+  })
+
+  it('has an enter method that transitions state to true, and invokes the walkThrough method if card === true', function () {
+    gate.enter()
+    expect(gate.enter).to.be.a.function
   })
 })
