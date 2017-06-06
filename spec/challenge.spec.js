@@ -16,17 +16,19 @@ describe('Finite State Machine', function () {
     expect(gate.state).to.equal('closed')
   })
 
-  it('has a tapCard method that transitions state to open', function () {
-    gate.tapCard()
+  it("has a tapCard method that transitions state to open if the charlieCard's monthlyValue is true", function () {
     expect(gate.tapCard).to.be.a.function
+    gate.tapCard()
     expect(gate.state).to.equal('open')
+    expect(gate.tapCard()).to.equal(true)
+    gate.walkThrough()
   })
 
   it('has a walkThrough method that transitions state to closed if state is currently open', function () {
     gate.tapCard()
     expect(gate.walkThrough()).to.equal(true)
-    gate.walkThrough()
     expect(gate.walkThrough).to.be.a.function
+    gate.walkThrough()
     expect(gate.state).to.equal('closed')
   })
 
@@ -35,8 +37,8 @@ describe('Finite State Machine', function () {
   })
 
   it('has an exit method that transitions state to open', function () {
-    gate.exit()
     expect(gate.exit).to.be.a.function
+    gate.exit()
     expect(gate.state).to.equal('open')
   })
 })
