@@ -24,14 +24,26 @@ describe('Finite State Machine', function () {
     gate.walkThrough()
   })
 
-  it("has an insertTicket method that transitions state to open if the charlieTicket's value is greater than or equal to 2.25", function () {
+  it('has an insertTicket method that transitions state to open if the Charlie Ticket has a value greater or equal to 2.25 & then subtracts 2.25 from the value', function () {
+    const ticketValue = challenge.charlieTicket.value
     expect(gate.insertTicket).to.be.a.function
     if (gate.insertTicket()) {
       expect(gate.state).to.equal('open')
     } else {
       expect(gate.state).to.equal('closed')
     }
+    if (challenge.charlieTicket.value >= 2.25) {
+      expect(challenge.charlieTicket.value).to.equal(ticketValue - 2.25)
+    }
     gate.walkThrough()
+  })
+
+  it('has an insertTicket method that does not transition state or subtract value from charlieTicket if state is open', function () {
+    gate.tapCard()
+    const ticketValue = challenge.charlieTicket.value
+    gate.insertTicket()
+    expect(gate.state).to.equal('open')
+    expect(challenge.charlieTicket.value).to.equal(ticketValue)
   })
 
   it('has a walkThrough method that transitions state to closed if state is currently open', function () {
