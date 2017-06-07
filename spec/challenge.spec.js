@@ -9,7 +9,7 @@ const expect = chai.expect
 
 const challenge = require('../lib/challenge')
 
-describe('Finite State Machine', function () {
+describe('SubwayGate', function () {
   const gate = new challenge.SubwayGate()
 
   it('has an initial state that is closed', function () {
@@ -40,20 +40,31 @@ describe('Finite State Machine', function () {
     const charlieTicket = {
       value: 10
     }
+    const initialValue = charlieTicket.value
     it('transitions state to open if the charlieTicket has a value greater or equal to 2.25', function () {
-      const ticketValue = charlieTicket.value
-
       expect(gate.insertTicket).to.be.a.function
-      if (gate.insertTicket(charlieTicket)) {
-        expect(gate.state).to.equal('open')
-      } else {
-        expect(gate.state).to.equal('closed')
-      }
-      if (charlieTicket.value >= 2.25) {
-        expect(charlieTicket.value).to.equal(ticketValue - 2.25)
-      }
-      gate.state = 'closed'
+      gate.insertTicket(charlieTicket)
+      expect(gate.state).to.equal('open')
     })
+    it('subtracts 2.25 from charlieTicket after successfully transitioning state to open', function () {
+      expect(charlieTicket.value).to.equal(initialValue - 2.25)
+    })
+    it('does not subtract 2.25 from charlieTicket if insertTicket is invoked while state is currently open', function () {
+      charlieTicket.value = 10
+      gate.state = 'open'
+      gate.insertTicket(charlieTicket)
+      expect(charlieTicket.value).to.equal(10)
+    })
+    //   if (gate.insertTicket(charlieTicket)) {
+    //     expect(gate.state).to.equal('open')
+    //   } else {
+    //     expect(gate.state).to.equal('closed')
+    //   }
+    //   if (charlieTicket.value >= 2.25) {
+    //     expect(charlieTicket.value).to.equal(ticketValue - 2.25)
+    //   }
+    //   gate.state = 'closed'
+    // })
   })
 
     // it('has an insertTicket method that transitions state to open if the Charlie Ticket has a value greater or equal to 2.25 & then subtracts 2.25 from the value', function () {
