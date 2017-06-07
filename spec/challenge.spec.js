@@ -44,14 +44,15 @@ describe('SubwayGate', function () {
 
     it('does not transition state to closed if invoked while state is open', function () {
       gate.state = 'open'
-      expect(gate.tapCard(charlieCard)).to.equal(true)
+      gate.tapCard(charlieCard)
       expect(gate.state).to.equal('open')
     })
 
     it('does not transition state to open if monthlyValue is false', function () {
       gate.state = 'closed'
       charlieCard.monthlyValue = false
-      expect(gate.tapCard(charlieCard)).to.equal(false)
+      gate.tapCard(charlieCard)
+      expect(gate.state).to.equal('closed')
     })
   })
 
@@ -75,6 +76,13 @@ describe('SubwayGate', function () {
       gate.state = 'open'
       gate.insertTicket(charlieTicket)
       expect(charlieTicket.value).to.equal(10)
+    })
+
+    it("does not transition state to open if charlieTicket's value is less than 2.25", function () {
+      charlieTicket.value = 2.24
+      gate.state = 'closed'
+      gate.insertTicket(charlieTicket)
+      expect(gate.state).to.equal('closed')
     })
     //   if (gate.insertTicket(charlieTicket)) {
     //     expect(gate.state).to.equal('open')
