@@ -91,6 +91,7 @@ describe('SubwayGate', function () {
       expect(charlieTicket.value).to.equal(initialValue)
     })
   })
+
   describe('walkThrough method', function () {
     it('returns false if state is currently closed', function () {
       gate.state = 'closed'
@@ -103,6 +104,7 @@ describe('SubwayGate', function () {
       expect(gate.state).to.equal('closed')
     })
   })
+
   describe('exit method', function () {
     it('transitions state to open', function () {
       gate.exit()
