@@ -90,39 +90,20 @@ describe('SubwayGate', function () {
       gate.insertTicket(charlieTicket)
       expect(charlieTicket.value).to.equal(initialValue)
     })
-    //   if (gate.insertTicket(charlieTicket)) {
-    //     expect(gate.state).to.equal('open')
-    //   } else {
-    //     expect(gate.state).to.equal('closed')
-    //   }
-    //   if (charlieTicket.value >= 2.25) {
-    //     expect(charlieTicket.value).to.equal(ticketValue - 2.25)
-    //   }
-    //   gate.state = 'closed'
-    // })
+  })
+  describe('walkThrough method', function () {
+    it('returns false if state is currently closed', function () {
+      gate.state = 'closed'
+      expect(gate.walkThrough()).to.equal(false)
+    })
+
+    it('transitions state to closed if state is currently open', function () {
+      gate.state = 'open'
+      gate.walkThrough()
+      expect(gate.state).to.equal('closed')
+    })
   })
 
-    // it('has an insertTicket method that transitions state to open if the Charlie Ticket has a value greater or equal to 2.25 & then subtracts 2.25 from the value', function () {
-    //   const ticketValue = challenge.charlieTicket.value
-    //   if (gate.insertTicket()) {
-    //     expect(gate.state).to.equal('open')
-    //   } else {
-    //     expect(gate.state).to.equal('closed')
-    //   }
-    //   if (challenge.charlieTicket.value >= 2.25) {
-    //     expect(challenge.charlieTicket.value).to.equal(ticketValue - 2.25)
-    //   }
-    //   gate.walkThrough()
-    // })
-    //
-    // it('has an insertTicket method that does not transition state or subtract value from charlieTicket if state is open', function () {
-    //   gate.tapCard()
-    //   const ticketValue = challenge.charlieTicket.value
-    //   gate.insertTicket()
-    //   expect(gate.state).to.equal('open')
-    //   expect(challenge.charlieTicket.value).to.equal(ticketValue)
-    // })
-    //
     // it('has a walkThrough method that transitions state to closed if state is currently open', function () {
     //   gate.tapCard()
     //   expect(gate.walkThrough()).to.equal(true)
