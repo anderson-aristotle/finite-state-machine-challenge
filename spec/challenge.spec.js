@@ -17,19 +17,19 @@ describe('SubwayGate', function () {
   })
 
   it('has a tapCard method', function () {
-    expect(gate.tapCard).to.be.a.function
+    expect(typeof gate.tapCard).to.equal('function')
   })
 
   it('has an insertTicket method', function () {
-    expect(gate.insertTicket).to.be.a.function
+    expect(typeof gate.insertTicket).to.equal('function')
   })
 
   it('has a walkthrough method', function () {
-    expect(gate.walkthrough).to.be.a.function
+    expect(typeof gate.walkThrough).to.equal('function')
   })
 
   it('has an exit method', function () {
-    expect(gate.exit).to.be.a.function
+    expect(typeof gate.exit).to.equal('function')
   })
 
   describe('tapCard method', function () {
@@ -37,7 +37,15 @@ describe('SubwayGate', function () {
       monthlyValue: true
     }
 
+    it('does not transition state to open if monthlyValue is not true', function () {
+      gate.state = 'closed'
+      charlieCard.monthlyValue = false
+      gate.tapCard(charlieCard)
+      expect(gate.state).to.equal('closed')
+    })
+
     it("transitions state to open if the charlieCard's monthlyValue is true", function () {
+      charlieCard.monthlyValue = true
       gate.tapCard(charlieCard)
       expect(gate.state).to.equal('open')
     })
@@ -47,22 +55,16 @@ describe('SubwayGate', function () {
       gate.tapCard(charlieCard)
       expect(gate.state).to.equal('open')
     })
-
-    it('does not transition state to open if monthlyValue is false', function () {
-      gate.state = 'closed'
-      charlieCard.monthlyValue = false
-      gate.tapCard(charlieCard)
-      expect(gate.state).to.equal('closed')
-    })
   })
 
   describe('insertTicket method', function () {
     const charlieTicket = {
       value: 10
     }
-    const initialValue = charlieTicket.value
+    let initialValue = charlieTicket.value
 
     it('transitions state to open if the charlieTicket has a value greater or equal to 2.25', function () {
+      gate.state = 'closed'
       gate.insertTicket(charlieTicket)
       expect(gate.state).to.equal('open')
     })
@@ -83,6 +85,13 @@ describe('SubwayGate', function () {
       gate.state = 'closed'
       gate.insertTicket(charlieTicket)
       expect(gate.state).to.equal('closed')
+    })
+
+    it("does not subtract from charlieTicket's value if it has less than 2.25", function () {
+      charlieTicket.value = 2.24
+      initialValue = charlieTicket.value
+      gate.insertTicket(charlieTicket)
+      expect(charlieTicket.value).to.equal(initialValue)
     })
     //   if (gate.insertTicket(charlieTicket)) {
     //     expect(gate.state).to.equal('open')
