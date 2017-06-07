@@ -24,7 +24,7 @@ describe('SubwayGate', function () {
     expect(typeof gate.insertTicket).to.equal('function')
   })
 
-  it('has a walkthrough method', function () {
+  it('has a walkThrough method', function () {
     expect(typeof gate.walkThrough).to.equal('function')
   })
 
@@ -74,10 +74,8 @@ describe('SubwayGate', function () {
     })
 
     it('does not subtract 2.25 from charlieTicket if insertTicket is invoked while state is currently open', function () {
-      charlieTicket.value = 10
-      gate.state = 'open'
       gate.insertTicket(charlieTicket)
-      expect(charlieTicket.value).to.equal(10)
+      expect(charlieTicket.value).to.equal(7.75)
     })
 
     it("does not transition state to open if charlieTicket's value is less than 2.25", function () {
@@ -88,7 +86,6 @@ describe('SubwayGate', function () {
     })
 
     it("does not subtract from charlieTicket's value if it has less than 2.25", function () {
-      charlieTicket.value = 2.24
       initialValue = charlieTicket.value
       gate.insertTicket(charlieTicket)
       expect(charlieTicket.value).to.equal(initialValue)
