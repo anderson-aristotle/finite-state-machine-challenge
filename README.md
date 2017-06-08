@@ -2,7 +2,7 @@
 
 # JS Finite State Machine Challenge
 
-For this challenge, you will create a simple [Finite State Machine](https://en.wikipedia.org/wiki/Finite-state_machine).
+For this challenge, you will create a simple [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine), represented by a SubwayGate.
 
 ## Prerequisites
 
@@ -19,6 +19,17 @@ Starter code is available in [`lib/challenge.js`](lib/challenge.js). A pull requ
 You may wish to refer to [FAQs](https://git.generalassemb.ly/ga-wdi-boston/meta/wiki) related to [forking and cloning](https://git.generalassemb.ly/ga-wdi-boston/meta/wiki/ForkAndClone).
 
 ## Requirements
+
+Implement `SubwayGate`, a constructor function that represents a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine). Each instance should have its own state that starts as `closed`. Each instance of `SubwayGate` should have access to four methods: `tapCard`, `insertTicket`, `exit`, and `walkThrough`.
+
+The gate's state should transition to `open` under three circumstances:
+  -  a charlieCard with monthlyValue of true is tapped on the gate
+  -  a charlieTicket with a high enough value ($2.25) is inserted into the gate
+  -  a person is exiting the station
+
+The gate's state should only transition to `closed` when the `walkThrough` method is invoked.
+
+While the gate is open, tapping a card or inserting a ticket should not transition the state to `closed`, also no further value should be deducted from the ticket. The gate's state should
 
 ## Tasks
 
