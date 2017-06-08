@@ -106,7 +106,13 @@ describe('SubwayGate', function () {
   })
 
   describe('exit method', function () {
-    it('transitions state to open', function () {
+    it('transitions state to open if state is currently closed', function () {
+      gate.exit()
+      expect(gate.state).to.equal('open')
+    })
+
+    it('does not transition state to closed if state is currently open', function () {
+      gate.state = 'open'
       gate.exit()
       expect(gate.state).to.equal('open')
     })
