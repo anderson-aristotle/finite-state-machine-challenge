@@ -29,7 +29,7 @@ The gate's state should transition to `open` under three circumstances:
 
 The gate's state should only transition to `closed` when the `walkThrough` method is invoked.
 
-While the gate is open, tapping a card or inserting a ticket should not transition the state to `closed`, also no further value should be deducted from the ticket. The gate's state should
+While the gate is open, tapping a card or inserting a ticket should not transition the state to `closed`, also no further value should be deducted from the ticket.
 
 ## Tasks
 
