@@ -2,7 +2,7 @@
 
 # JS Finite State Machine Challenge
 
-For this challenge, you will create a simple [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine), represented by a SubwayGate.
+For this challenge, you will create a simple [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine), represented by a `SubwayGate`.
 
 ## Prerequisites
 
@@ -20,18 +20,18 @@ You may wish to refer to [FAQs](https://git.generalassemb.ly/ga-wdi-boston/meta/
 
 ## Requirements
 
-Implement `SubwayGate`, a constructor function that represents a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine). Each instance should have its own state that starts as `closed`. Each instance of `SubwayGate` should have access to four methods: `tapCard`, `insertTicket`, `exit`, and `walkThrough`.
+Implement a `SubwayGate` constructor function that represents a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine). Each instance should have its own `state` that starts as `closed`. Each instance of `SubwayGate` should have access to four methods: `tapCard`, `insertTicket`, `exit`, and `walkThrough`.
 
-The gate's state should transition to `open` under three circumstances:
+The gate's `state` should transition to `open` under three circumstances:
   -  a `charlieCard` with a `monthlyValue` of `true` is tapped on the gate
   -  a `charlieTicket` with a high enough `value` ($2.25) is inserted into the gate
   -  a person is `exit`ing the station
 
-The gate's state should only transition to `closed` when the `walkThrough` method is invoked.
+The gate's `state` should only transition to `closed` when the `walkThrough` method is invoked.
 
-While the gate is open, tapping a card or inserting a ticket should not transition the state to `closed`, also no further `value` should be deducted from the ticket.
+While the gate's state is `open`, tapping a card or inserting a ticket should not transition the state to `closed`, also no further `value` should be deducted from the ticket.
 
-The tests will handle the creation of the `charlieCard` and `charlieTicket`, you should use them as parameters to your methods. They will be objects and their key's are mentioned above.
+The tests will handle the creation of the `charlieCard` and `charlieTicket`, you should use them as parameters to your methods. They will be objects and their keys are mentioned above.
 
 ## Tasks
 
