@@ -20,7 +20,7 @@ You may wish to refer to [FAQs](https://git.generalassemb.ly/ga-wdi-boston/meta/
 
 ## Requirements
 
-Implement a `SubwayGate` constructor function that represents a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine). Each instance should have its own `state` that starts as `closed`. Each instance of `SubwayGate` should have access to four methods: `tapCard`, `insertTicket`, `exit`, and `walkThrough`.
+Implement a `SubwayGate` constructor function that represents a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine). Each instance should have its own `_state`. Each instance of `SubwayGate` should have access to four methods: `tapCard`, `insertTicket`, `exit`, and `walkThrough`.
 
 The gate's `state` should transition to `open` under three circumstances:
   -  a `charlieCard` with a `monthlyValue` of `true` is tapped on the gate
