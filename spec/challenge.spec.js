@@ -27,4 +27,13 @@ describe('SubwayGate', function () {
   it('has an exit method', function () {
     expect(typeof gate.exit).to.equal('function')
   })
+
+  it('is instantiated with an immutable _state property', function () {
+    expect(gate).to.have.ownPropertyDescriptor('_state', {
+      configurable: true,
+      enumerable: false,
+      writable: false,
+      value: 'closed'
+    })
+  })
 })
