@@ -47,4 +47,9 @@ describe('exit method', function () {
     gate.exit()
     expect(gate._state).to.equal('open')
   })
+
+  it('does not transition _state to closed if invoked while _state is open', function () {
+    gate.exit()
+    expect(gate._state).to.equal('open')
+  })
 })
