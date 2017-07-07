@@ -66,7 +66,7 @@ describe('walkThrough method', function () {
   })
 })
 
-describe('insertTicket method with sufficient value', function () {
+describe('insertTicket method with charlieTicket that has sufficient value', function () {
   const charlieTicket = {
     value: 10
   }
@@ -77,6 +77,11 @@ describe('insertTicket method with sufficient value', function () {
   })
 
   it('subtracts 2.25 from charlieTicket\'s value after transitioning _state to open', function () {
+    expect(charlieTicket.value).to.equal(initialValue - 2.25)
+  })
+
+  it('does not subtract from charlieTicket\'s value if invoked while _state is open', function () {
+    gate.insertTicket(charlieTicket)
     expect(charlieTicket.value).to.equal(initialValue - 2.25)
   })
 })
