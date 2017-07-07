@@ -8,10 +8,9 @@ chai.use(chaiAsPromised)
 const expect = chai.expect
 
 const challenge = require('../lib/challenge')
+const gate = new challenge.SubwayGate()
 
 describe('SubwayGate', function () {
-  const gate = new challenge.SubwayGate()
-
   it('has a tapCard method', function () {
     expect(typeof gate.tapCard).to.equal('function')
   })
@@ -40,5 +39,12 @@ describe('SubwayGate', function () {
   it('has a state method that returns the value of _state', function () {
     expect(typeof gate.state).to.equal('function')
     expect(gate.state()).to.equal(gate._state)
+  })
+})
+
+describe('exit method', function () {
+  it('transitions _state to open if invoked while _state is closed', function () {
+    gate.exit()
+    expect(gate._state).to.equal('open')
   })
 })
