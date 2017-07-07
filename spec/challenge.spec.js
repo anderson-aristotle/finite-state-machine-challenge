@@ -53,3 +53,10 @@ describe('exit method', function () {
     expect(gate._state).to.equal('open')
   })
 })
+
+describe('walkThrough method', function () {
+  it('transitions _state to closed if invoked while _state is open', function () {
+    gate.walkThrough()
+    expect(gate._state).to.equal('closed')
+  })
+})
