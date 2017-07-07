@@ -65,3 +65,14 @@ describe('walkThrough method', function () {
     expect(gate.state()).to.equal('closed')
   })
 })
+
+describe('insertTicket method with sufficient value', function () {
+  const charlieTicket = {
+    value: 10
+  }
+  const initialValue = charlieTicket.value
+  it('transitions _state to open if invoked while _state is closed and charlieTicket has enough value', function () {
+    gate.insertTicket(charlieTicket)
+    expect(gate.state()).to.equal('open')
+  })
+})
