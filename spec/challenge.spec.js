@@ -36,4 +36,9 @@ describe('SubwayGate', function () {
       value: 'closed'
     })
   })
+
+  it('has a state method that returns the value of _state', function () {
+    expect(typeof gate.state).to.equal('function')
+    expect(gate.state()).to.equal(gate._state)
+  })
 })
