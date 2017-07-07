@@ -59,4 +59,9 @@ describe('walkThrough method', function () {
     gate.walkThrough()
     expect(gate._state).to.equal('closed')
   })
+
+  it('returns false if invoked while _state is closed, and does not transition _state to open', function () {
+    expect(gate.walkThrough()).to.equal(false)
+    expect(gate.state()).to.equal('closed')
+  })
 })
