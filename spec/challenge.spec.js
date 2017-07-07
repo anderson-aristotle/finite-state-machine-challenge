@@ -75,4 +75,8 @@ describe('insertTicket method with sufficient value', function () {
     gate.insertTicket(charlieTicket)
     expect(gate.state()).to.equal('open')
   })
+
+  it('subtracts 2.25 from charlieTicket\'s value after transitioning _state to open', function () {
+    expect(charlieTicket.value).to.equal(initialValue - 2.25)
+  })
 })
