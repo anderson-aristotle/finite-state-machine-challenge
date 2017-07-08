@@ -68,6 +68,11 @@ describe('SubwayGate', function () {
         gate.insertTicket(charlieTicket)
         expect(charlieTicket.value).to.equal(initialValue - 2.25)
       })
+
+      it('does not transition _state to closed if invoked while _state is open', function () {
+        gate.insertTicket(charlieTicket)
+        expect(gate.state()).to.equal('open')
+      })
     })
 
     describe('when invoked with charlieTicket that has insufficient value', function () {
