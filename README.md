@@ -6,6 +6,9 @@ For this challenge, you will create a simple [Finite-State Machine](https://en.w
 
 ## Prerequisites
 
+- [ember-routing-study](https://git.generalassemb.ly/ga-wdi-boston/ember-routing-study)
+- [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+
 ## Instructions
 
 1. Fork and clone this repository.
@@ -20,18 +23,33 @@ You may wish to refer to [FAQs](https://git.generalassemb.ly/ga-wdi-boston/meta/
 
 ## Requirements
 
-Implement a `SubwayGate` constructor function that represents a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine). Each instance should have its own `_state`. Each instance of `SubwayGate` should have access to four methods: `tapCard`, `insertTicket`, `exit`, and `walkThrough`.
+Implement a `SubwayGate` constructor function that represents a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine). Each instance should have its own immutable `_state` property that starts as `'closed'`. Each instance of `SubwayGate` should have access to five methods: `state`, `tapCard`, `insertTicket`, `exit`, and `walkThrough`.
 
-The gate's `state` should transition to `open` under three circumstances:
-  -  a `charlieCard` with a `monthlyValue` of `true` is tapped on the gate
-  -  a `charlieTicket` with a high enough `value` ($2.25) is inserted into the gate
+Invoking the `state` method should return the value of `_state`.
+
+The gate's `_state` should transition to `'open'` only under three circumstances:
+
+  - a `charlieCard` with a `monthlyValue` of `true` is tapped on the gate
+  -  a `charlieTicket` with a high enough `value` (2.25) is inserted into the gate
   -  a person is `exit`ing the station
 
-The gate's `state` should only transition to `closed` when the `walkThrough` method is invoked.
+The gate's `_state` should only transition to `'closed'` when the `walkThrough` method is invoked.
 
-While the gate's state is `open`, tapping a card or inserting a ticket should not transition the state to `closed`, also no further `value` should be deducted from the ticket.
+While the gate's `_state` is `'open'`, tapping a card or inserting a ticket should not transition the state to `'closed'`, also no further `value` should be deducted from the ticket.
 
-The tests will handle the creation of the `charlieCard` and `charlieTicket`, you should use them as parameters to your methods. They will be objects and their keys are mentioned above.
+The tests will handle the creation of the `charlieCard` and `charlieTicket` which will look like so:
+
+```js
+const charlieCard = {
+  monthlyValue: Boolean
+}
+
+const charlieTicket = {
+  value: Number
+}
+```
+
+You must use them as parameters to your `tapCard` and `insertTicket` methods.
 
 ## Tasks
 
