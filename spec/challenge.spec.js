@@ -90,10 +90,15 @@ describe('insertTicket method with charlieTicket that has insufficient value', f
   const charlieTicket = {
     value: 2.24
   }
-  // const initialValue = charlieTicket.value
+  const initialValue = charlieTicket.value
 
-  it('does not transition _state to open if invoked while _state is closed and charlieTicket does not have enough value', function () {
+  it('does not transition _state to open', function () {
     gate.walkThrough()
     expect(gate.insertTicket(charlieTicket)).to.equal(false)
+  })
+
+  it('does not subtract from charlieTicket\'s value', function () {
+    gate.insertTicket(charlieTicket)
+    expect(charlieTicket.value).to.equal(initialValue)
   })
 })
