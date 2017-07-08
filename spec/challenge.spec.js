@@ -87,4 +87,17 @@ describe('SubwayGate', function () {
       })
     })
   })
+
+  describe('has a tapCard method', function () {
+    describe('when invoked with charlieCard that has a monthlyValue of true', function () {
+      const charlieCard = {
+        monthlyValue: true
+      }
+
+      it('transitions _state to open if invoked while _state is closed', function () {
+        gate.tapCard(charlieCard)
+        expect(gate.state()).to.equal('open')
+      })
+    })
+  })
 })
