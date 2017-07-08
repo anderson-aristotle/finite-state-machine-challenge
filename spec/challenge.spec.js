@@ -11,21 +11,21 @@ const challenge = require('../lib/challenge')
 const gate = new challenge.SubwayGate()
 
 describe('SubwayGate', function () {
-  it('has a tapCard method', function () {
-    expect(typeof gate.tapCard).to.equal('function')
-  })
-
-  it('has an insertTicket method', function () {
-    expect(typeof gate.insertTicket).to.equal('function')
-  })
-
-  it('has a walkThrough method', function () {
-    expect(typeof gate.walkThrough).to.equal('function')
-  })
-
-  it('has an exit method', function () {
-    expect(typeof gate.exit).to.equal('function')
-  })
+  // it('has a tapCard method', function () {
+  //   expect(typeof gate.tapCard).to.equal('function')
+  // })
+  //
+  // it('has an insertTicket method', function () {
+  //   expect(typeof gate.insertTicket).to.equal('function')
+  // })
+  //
+  // it('has a walkThrough method', function () {
+  //   expect(typeof gate.walkThrough).to.equal('function')
+  // })
+  //
+  // it('has an exit method', function () {
+  //   expect(typeof gate.exit).to.equal('function')
+  // })
 
   it('is instantiated with an immutable _state property', function () {
     expect(gate).to.have.ownPropertyDescriptor('_state', {
@@ -40,65 +40,65 @@ describe('SubwayGate', function () {
     expect(typeof gate.state).to.equal('function')
     expect(gate.state()).to.equal(gate._state)
   })
-})
 
-describe('exit method', function () {
-  it('transitions _state to open if invoked while _state is closed', function () {
-    gate.exit()
-    expect(gate._state).to.equal('open')
+  describe('has an exit method that', function () {
+    it('transitions _state to open if invoked while _state is closed', function () {
+      gate.exit()
+      expect(gate._state).to.equal('open')
+    })
+
+    it('does not transition _state to closed if invoked while _state is open', function () {
+      gate.exit()
+      expect(gate._state).to.equal('open')
+    })
   })
 
-  it('does not transition _state to closed if invoked while _state is open', function () {
-    gate.exit()
-    expect(gate._state).to.equal('open')
-  })
-})
+  describe('has a walkThrough method that', function () {
+    it('transitions _state to closed if invoked while _state is open', function () {
+      gate.walkThrough()
+      expect(gate._state).to.equal('closed')
+    })
 
-describe('walkThrough method', function () {
-  it('transitions _state to closed if invoked while _state is open', function () {
-    gate.walkThrough()
-    expect(gate._state).to.equal('closed')
-  })
-
-  it('returns false if invoked while _state is closed, and does not transition _state to open', function () {
-    expect(gate.walkThrough()).to.equal(false)
-    expect(gate.state()).to.equal('closed')
-  })
-})
-
-describe('insertTicket method with charlieTicket that has sufficient value', function () {
-  const charlieTicket = {
-    value: 10
-  }
-  const initialValue = charlieTicket.value
-  it('transitions _state to open if invoked while _state is closed and charlieTicket has enough value', function () {
-    gate.insertTicket(charlieTicket)
-    expect(gate.state()).to.equal('open')
+    it('returns false if invoked while _state is closed, and does not transition _state to open', function () {
+      expect(gate.walkThrough()).to.equal(false)
+      expect(gate.state()).to.equal('closed')
+    })
   })
 
-  it('subtracts 2.25 from charlieTicket\'s value after transitioning _state to open', function () {
-    expect(charlieTicket.value).to.equal(initialValue - 2.25)
+  describe('has an insertTicket method being invoked with a charlieTicket that has sufficient value', function () {
+    const charlieTicket = {
+      value: 10
+    }
+    const initialValue = charlieTicket.value
+    it('transitions _state to open if invoked while _state is closed and charlieTicket has enough value', function () {
+      gate.insertTicket(charlieTicket)
+      expect(gate.state()).to.equal('open')
+    })
+
+    it('subtracts 2.25 from charlieTicket\'s value after transitioning _state to open', function () {
+      expect(charlieTicket.value).to.equal(initialValue - 2.25)
+    })
+
+    it('does not subtract from charlieTicket\'s value if invoked while _state is open', function () {
+      gate.insertTicket(charlieTicket)
+      expect(charlieTicket.value).to.equal(initialValue - 2.25)
+    })
   })
 
-  it('does not subtract from charlieTicket\'s value if invoked while _state is open', function () {
-    gate.insertTicket(charlieTicket)
-    expect(charlieTicket.value).to.equal(initialValue - 2.25)
-  })
-})
+  describe('insertTicket method invoked with charlieTicket that has insufficient value', function () {
+    const charlieTicket = {
+      value: 2.24
+    }
+    const initialValue = charlieTicket.value
 
-describe('insertTicket method with charlieTicket that has insufficient value', function () {
-  const charlieTicket = {
-    value: 2.24
-  }
-  const initialValue = charlieTicket.value
+    it('does not transition _state to open', function () {
+      gate.walkThrough()
+      expect(gate.insertTicket(charlieTicket)).to.equal(false)
+    })
 
-  it('does not transition _state to open', function () {
-    gate.walkThrough()
-    expect(gate.insertTicket(charlieTicket)).to.equal(false)
-  })
-
-  it('does not subtract from charlieTicket\'s value', function () {
-    gate.insertTicket(charlieTicket)
-    expect(charlieTicket.value).to.equal(initialValue)
+    it('does not subtract from charlieTicket\'s value', function () {
+      gate.insertTicket(charlieTicket)
+      expect(charlieTicket.value).to.equal(initialValue)
+    })
   })
 })
