@@ -98,6 +98,11 @@ describe('SubwayGate', function () {
         gate.tapCard(charlieCard)
         expect(gate.state()).to.equal('open')
       })
+
+      it('does not transition _state to closed if invoked while _state is open', function () {
+        gate.tapCard(charlieCard)
+        expect(gate.state()).to.equal('open')
+      })
     })
 
     describe('when invoked with charlieCard that has a monthlyValue of false', function () {
