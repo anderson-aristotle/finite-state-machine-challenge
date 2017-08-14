@@ -39,6 +39,7 @@ While the gate's `_state` is `'open'`, tapping a card or inserting a ticket shou
 
 The tests will handle the creation of the `charlieCard` and `charlieTicket` which will look like so:
 
+<!-- start code block file="snippets/charlieValue.js" -->
 ```js
 const charlieCard = {
   monthlyValue: Boolean
@@ -47,7 +48,14 @@ const charlieCard = {
 const charlieTicket = {
   value: Number
 }
+
+module.exports = {
+  charlieCard,
+  charlieTicket
+}
 ```
+<!-- end code block -->
+
 
 You must use them as parameters to your `tapCard` and `insertTicket` methods.
 
