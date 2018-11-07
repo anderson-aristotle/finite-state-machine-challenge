@@ -8,7 +8,7 @@ Machine](https://en.wikipedia.org/wiki/Finite-state_machine), represented by a
 
 ## Prerequisites
 
-- [ember-routing-study](https://git.generalassemb.ly/ga-wdi-boston/ember-routing-study)
+- [react-components-state](https://git.generalassemb.ly/ga-wdi-boston/react-components-state)
 - [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
 ## Instructions
